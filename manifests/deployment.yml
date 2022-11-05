@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: argueapibackend 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: argueapibackend
+  template:
+    metadata:
+      labels:
+        app: argueapibackend 
+    spec:
+      containers:
+        - name: argueapibackend 
+          image: arguebackendcontainer.azurecr.io/argueapibackend
+          ports:
+          - containerPort: 80

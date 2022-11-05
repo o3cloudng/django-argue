@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argue-aks-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: argue-aks-api
+  template:
+    metadata:
+      labels:
+        app: argue-aks-api
+    spec:
+      containers:
+      - name: argue-aks-api
+        image: argueapiazurecontainer.azurecr.io/argue-aks-api
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

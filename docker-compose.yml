@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  djangoapp:
+    build: .
+    volumes:
+      - .:/opt/services/djangoapp/src
+      - static_volume:/opt/services/djangoapp/static  # <-- bind the static volume
+      - media_volume:/opt/services/djangoapp/media  # <-- bind the media volume
+    networks:
+      - nginx_network
+    # depends_on:
+    #   - redis
+
+  nginx:
+    image: pagespeed/nginx-pagespeed:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - static_volume:/opt/services/djangoapp/static  # <-- bind the static volume
+      - media_volume:/opt/services/djangoapp/media  # <-- bind the media volume
+    depends_on:
+      - djangoapp
+    networks:
+      - nginx_network
+
+
+  # celery:
+  #   build: .
+  #   command: python -m celery -A core worker # Command used to start the Celery worker in the Docker container
+  #   volumes:
+  #     - ./core/celery:/usr/src/app
+  #   environment:
+  #     - DEBUG=1
+  #     # - SECRET_KEY=dbaa1_i7%*3r9-=z-+_mz4r-!qeed@(-a_r(g@k8jo8y3r27%m
+  #     # - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+  #     - CELERY_BROKER=redis://redis:6379/0
+  #     - CELERY_BACKEND=redis://redis:6379/0
+  #     # depends on show that celery worker service requires the web service and the redis service to run
+  #   depends_on: 
+  #     - djangoapp
+  #     - redis
+
+  # redis:
+  #   image: redis:6-alpine
+
+networks:
+  nginx_network:
+    driver: bridge
+
+volumes:
+  static_volume:  # <-- declare the static volume
+  media_volume:  # <-- declare the media volume

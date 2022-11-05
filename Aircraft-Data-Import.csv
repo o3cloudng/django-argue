@@ -1,0 +1,5 @@
+id,icao_code,aircraft_model,year_manufactured,model_3d_image,type,description,engine_type,engine_count,wtc,iata,is_active
+1,FRT123,BOEN 446,2010,olumide.jpg,Jet,something here,ENG234,200,TH3,JH7625,True
+2,FRT123,BOEN 446,2010,olumide.jpg,Commercial,something here,ENG234,200,TH3,JH7625,True
+3,FRT123,BOEN 446,2010,olumide.jpg,Air bus,something here,ENG234,200,TH3,JH7625,True
+4,FRT123,BOEN 446,2010,olumide.jpg,Fighter Jet,something here,ENG234,200,TH3,JH7625,True

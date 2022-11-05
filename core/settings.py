@@ -36,9 +36,7 @@ SECRET_KEY = str(os.getenv("DJANGO_SECRET_KEY", get_random_secret_key()))
 # DEBUG = config("DEBUG")
 DEBUG = True #str(os.getenv("DEBUG", "False") == "True")
 ALLOWED_HOSTS = ["*"]
-# ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOST", "127.0.0.1,localhost").split(",")
-# ALLOWED_HOSTS = ["http://backend-argue.synercomgroup.net","157.230.93.221", "localhost"]
-# ALLOWED_HOSTS = [".synercomgroup.net", "127.0.0.1"]
+
 
 
 # Application definition
@@ -161,80 +159,14 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 # # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': dj_database_url.parse(
-#         'postgres://argueAPIusername_DB:E1WGyijx*FN@@argueapi-db.postgres.database.azure.com:5432/argueapi-db',
-#         conn_max_age=600)
-#     }
 
-#  DATABASE_URL = "postgres://argueAPIusername_DB:&n^DZHlksZ7K@argueapi-db.postgres.database.azure.com/argueapi-db"
-
-# DATABASES = {
-#     'default': dj_database_url.parse(
-#         'postgres://gvyahzzn:Ov0zfda8DkfyLfjD29hjMXg7DH_9bXbb@lucky.db.elephantsql.com/gvyahzzn',
-#         conn_max_age=600)
-#     }
-
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-#     }
-# }
-# DATABASES['default'] = dj_database_url.parse('postgres://wddhdokx:7HNwZA3vosgAni1Bvz0dmCTDA4EYbm3G@tiny.db.elephantsql.com/wddhdokx', conn_max_age=600)
-
-# POSTGRES_DB = str(os.getenv("POSTGRES_DB"))
-# POSTGRES_PASSWORD = str(os.getenv("POSTGRES_PASSWORD"))
-# POSTGRES_USERNAME = str(os.getenv("POSTGRES_USERNAME "))
-# POSTGRES_HOST = str(os.getenv("POSTGRES_HOST"))
-# POSTGRES_PORT = str(os.getenv("POSTGRES_PORT"))
-
-POSTGRES_DB = str("argueapi-db")
-POSTGRES_PASSWORD = str("E1WGyijx*FN@")
-POSTGRES_USERNAME = str("argueAPIusername_DB")
-POSTGRES_HOST = str("argueapi-db.postgres.database.azure.com")
-POSTGRES_PORT = 5432
-
-POSTGRES_READY = (
-    POSTGRES_DB is not None
-    and POSTGRES_PASSWORD is not None
-    and POSTGRES_USERNAME is not None
-    and POSTGRES_HOST is not None
-    and POSTGRES_PORT is not None
-)
 DATABASES = {
     "default": {
-    "ENGINE":"django.db.backends.postgresql_psycopg2",
-    "NAME": POSTGRES_DB,
-    "USER": POSTGRES_USERNAME,
-    "PASSWORD": POSTGRES_PASSWORD,
-    "HOST": POSTGRES_HOST,
-    "PORT": POSTGRES_PORT,
-    # "OPTIONS": {"sslmode": "require"},
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
 }
-
-# DEVELOPMENT_MODE = str(os.getenv("DEVELOPMENT_MODE"))
-
-# if DEVELOPMENT_MODE == False:
-#     DATABASES = {
-#         "default": {
-#             "ENGINE": "django.db.backends.sqlite3",
-#             "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-#         }
-#     }
-# else:
-#     DATABASES = {
-#         "default": {
-#             "ENGINE":"django.db.backends.postgresql_psycopg2",
-#             "NAME": POSTGRES_DB,
-#             "USER": POSTGRES_USERNAME,
-#             "PASSWORD": POSTGRES_PASSWORD,
-#             "HOST": POSTGRES_HOST,
-#             "PORT": POSTGRES_PORT,
-#             # "OPTIONS": {"sslmode": "require"},
-#         }
-#     }
+# DATABASES['default'] = dj_database_url.parse('postgres://wddhdokx:7HNwZA3vosgAni1Bvz0dmCTDA4EYbm3G@tiny.db.elephantsql.com/wddhdokx', conn_max_age=600)
 
 
 # Password validation
@@ -273,19 +205,6 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # EMAIL SETTINGS
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-# For printing in Backend Terminal Console
-# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
-# SENDGRID_API_KEY = str(os.getenv("SENDGRID_API_KEY"))
-
-# EMAIL_HOST = "smtp.sendgrid.net"
-# EMAIL_HOST_USER = "apikey"  # this is exactly the value 'apikey'
-# EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# DEFAULT_FROM_EMAIL = str(os.getenv("DEFAULT_FROM_EMAIL"))
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'scribespro@gmail.com'
